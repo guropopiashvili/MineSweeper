@@ -1,0 +1,17 @@
+<div class="board" [ngStyle]="{'width': 'calc(25 *' + this.boardSize + 'px)',
+'height': 'calc(25 *' + this.boardSize + 'px)'}">
+    @for (box of matrix; track $index; let index = $index) {
+    <div class="box" (contextmenu)="onRightClick($event, index)" (click)="unbox(index)">
+        <p *ngIf="!box.covered && !box.isMined">{{box.nOfAdjacentMines ? box.nOfAdjacentMines : ''}}</p>
+        <p class="flag" *ngIf="box.covered && box.flagged"></p>
+        <p class="mine" *ngIf="!box.covered && box.isMined"></p>
+    </div>
+    }
+</div>
+
+<div class="win" *ngIf="gameWon" (click)="resetGame()">
+    <h2>You Won!</h2>
+</div>
+<div class="loss" *ngIf="gameLost" (click)="resetGame()">
+    <h2>You Lost!</h2>
+</div>

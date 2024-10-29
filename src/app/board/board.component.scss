@@ -1,0 +1,86 @@
+.board {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+
+    .box {
+        position: relative;
+        width: 25px;
+        height: 25px;
+        background: #242424;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        &:hover {
+            background-color: #3a3847;
+        }
+
+        p {
+            line-height: 25px;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background: #eaeaea;
+            animation: boxIn linear 0.2s;
+
+            &.mine {
+                background: #eaeaea center / 50% no-repeat url('../../icons/mine.svg');
+                animation: 0;
+            }
+
+            &.flag {
+                background-color: #fcb667;
+            }
+        }
+    }
+}
+
+.win,
+.loss {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    font-size: 70px;
+    animation: blink linear infinite 1s;
+    cursor: pointer;
+}
+
+.win {
+    color: #005b44;
+}
+
+
+@keyframes boxIn {
+    from {
+        width: 1%;
+        height: 1%;
+        opacity: 0;
+        font-size: 0px;
+    }
+
+    to {
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+        font-size: 13px;
+    }
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}

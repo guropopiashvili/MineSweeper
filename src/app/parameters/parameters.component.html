@@ -1,0 +1,23 @@
+<div class="parameters" (mouseenter)="expanded = true" (mouseleave)="expanded = false">
+    <div class="container">
+        <h2>BOARD SIZE {{boardSize}} X {{boardSize}}</h2>
+
+        <div class="slider" [ngClass]="{'expanded': expanded}">
+            <input type="range" [(ngModel)]="boardSize" min="8" max="22"
+                (ngModelChange)="onBoxSizeChange($event)">
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>MINE COUNT {{mineCount}}</h2>
+
+        <div class="slider" [ngClass]="{'expanded': expanded}">
+            <input type="range" [(ngModel)]="mineCount" [min]="5"
+                [max]="math.floor(boardSize * boardSize / 3)" (ngModelChange)="parametersService.mineCount = $event">
+        </div>
+    </div>
+
+    <div class="load" [ngClass]="{'expanded': expanded}" (click)="loadBoard()">
+        Load
+    </div>
+</div>
